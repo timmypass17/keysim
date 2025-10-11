@@ -6,6 +6,8 @@ const charcoal = { r: 64, g: 62, b: 62 };
 class Key {
   constructor(
     label,
+    subLabel,
+    legend,
     code,
     keyColor,
     sound = "regular",
@@ -13,6 +15,8 @@ class Key {
     width = 1
   ) {
     this.label = label;
+    this.subLabel = subLabel;
+    this.legend = legend;
     this.code = code;
     this.keyColor = keyColor;
     this.width = width;
@@ -59,14 +63,31 @@ class Key {
     const span = document.createElement("span");
     span.textContent = this.label.toUpperCase();
     span.style.color = this.getTextColor(this.keyColor);
-
+    span.style.fontWeight = "500";
     keyButton.appendChild(keyInnerDiv);
+
+    if (this.subLabel !== "") {
+      const subLabelSpan = document.createElement("span");
+      subLabelSpan.textContent = this.subLabel.toUpperCase();
+      subLabelSpan.style.color = this.getTextColor(this.keyColor);
+      keyInnerDiv.appendChild(subLabelSpan);
+    }
+
     keyInnerDiv.appendChild(span);
+
+    if (this.legend !== "") {
+      const legendSpan = document.createElement("span");
+      legendSpan.textContent = this.legend.toUpperCase();
+      legendSpan.style.color = this.getTextColor(this.keyColor);
+      legendSpan.classList.add("legend");
+      keyInnerDiv.appendChild(legendSpan);
+    }
 
     // Store reference to button element
     this.keyButton = keyButton;
     this.keyInnerDiv = keyInnerDiv;
 
+    // Make this into subclass and override
     if (this.label === "") {
       // Space bar has slightly different modifier
       keyInnerDiv.classList.add("spacebar");
@@ -85,86 +106,113 @@ class Key {
 
 // Key = 55px, row = 55 * 16 = 880px, 16 keys
 const row1 = [
-  new Key("esc", "Escape", grey),
-  new Key("1", "Digit1", white),
-  new Key("2", "Digit2", white),
-  new Key("3", "Digit3", white),
-  new Key("4", "Digit4", white),
-  new Key("5", "Digit5", white),
-  new Key("6", "Digit6", white),
-  new Key("7", "Digit7", white),
-  new Key("8", "Digit8", white),
-  new Key("9", "Digit9", white),
-  new Key("0", "Digit0", white),
-  new Key("-", "Minus", white),
-  new Key("+", "Equal", white),
-  new Key("backspace", "Backspace", grey, "backspace", "backspace-up", 2),
-  new Key("pause", "Pause", grey),
+  new Key("", "esc", "", "Escape", grey),
+  new Key("1", "!", "ぬ", "Digit1", white),
+  new Key("2", "@", "ふ", "Digit2", white),
+  new Key("3", "#", "あ", "Digit3", white),
+  new Key("4", "$", "う", "Digit4", white),
+  new Key("5", "%", "え", "Digit5", white),
+  new Key("6", "^", "お", "Digit6", white),
+  new Key("7", "&", "や", "Digit7", white),
+  new Key("8", "*", "ゆ", "Digit8", white),
+  new Key("9", "(", "よ", "Digit9", white),
+  new Key("0", ")", "わ", "Digit0", white),
+  new Key("-", "_", "ほ", "Minus", white),
+  new Key("=", "+", "へ", "Equal", white),
+  new Key(
+    "backspace",
+    "",
+    "",
+    "Backspace",
+    grey,
+    "backspace",
+    "backspace-up",
+    2
+  ),
+  new Key("pause", "", "", "Pause", grey),
 ];
 
 const row2 = [
-  new Key("tab", "Tab", grey, "tab", "tab-up", 1.5),
-  new Key("q", "KeyQ", white),
-  new Key("w", "KeyW", white),
-  new Key("e", "KeyE", white),
-  new Key("r", "KeyR", white),
-  new Key("t", "KeyT", white),
-  new Key("y", "KeyY", white),
-  new Key("u", "KeyU", white),
-  new Key("i", "KeyI", white),
-  new Key("o", "KeyO", white),
-  new Key("p", "KeyP", white),
-  new Key("[", "BracketLeft", white),
-  new Key("]", "BracketRight", white),
-  new Key("\\", "Backslash", white, "backslash", "backslash-up", 1.5),
-  new Key("del", "Delete", grey),
+  new Key("tab", "", "", "Tab", grey, "tab", "tab-up", 1.5),
+  new Key("q", "", "た", "KeyQ", white),
+  new Key("w", "", "て", "KeyW", white),
+  new Key("e", "", "い", "KeyE", white),
+  new Key("r", "", "す", "KeyR", white),
+  new Key("t", "", "か", "KeyT", white),
+  new Key("y", "", "ん", "KeyY", white),
+  new Key("u", "", "な", "KeyU", white),
+  new Key("i", "", "に", "KeyI", white),
+  new Key("o", "", "ら", "KeyO", white),
+  new Key("p", "", "せ", "KeyP", white),
+  new Key("[", "{", "゛", "BracketLeft", white),
+  new Key("]", "}", "゜", "BracketRight", white),
+  new Key(
+    "\\",
+    "|",
+    "む",
+    "Backslash",
+    white,
+    "backslash",
+    "backslash-up",
+    1.5
+  ),
+  new Key("del", "", "", "Delete", grey),
 ];
 
 const row3 = [
-  new Key("capslock", "CapsLock", grey, "capslock", "capslock-up", 1.7),
-  new Key("a", "KeyA", white),
-  new Key("s", "KeyS", white),
-  new Key("d", "KeyD", white),
-  new Key("f", "KeyF", white),
-  new Key("g", "KeyG", white),
-  new Key("h", "KeyH", white),
-  new Key("j", "KeyJ", white),
-  new Key("k", "KeyK", white),
-  new Key("l", "KeyL", white),
-  new Key(":", "Semicolon", white),
-  new Key("'", "Quote", white),
-  new Key("enter ツ", "Enter", charcoal, "enter", "enter-up", 2.3),
-  new Key("pgup", "PageUp", grey),
+  new Key("capslock", "", "", "CapsLock", grey, "capslock", "capslock-up", 1.7),
+  new Key("a", "", "ち", "KeyA", white),
+  new Key("s", "", "と", "KeyS", white),
+  new Key("d", "", "し", "KeyD", white),
+  new Key("f", "", "は", "KeyF", white),
+  new Key("g", "", "き", "KeyG", white),
+  new Key("h", "", "く", "KeyH", white),
+  new Key("j", "", "ま", "KeyJ", white),
+  new Key("k", "", "の", "KeyK", white),
+  new Key("l", "", "り", "KeyL", white),
+  new Key(";", ":", "れ", "Semicolon", white),
+  new Key("'", '"', "け", "Quote", white),
+  new Key("enter ツ", "", "", "Enter", charcoal, "enter", "enter-up", 2.3),
+  new Key("pgup", "", "", "PageUp", grey),
 ];
 
 const row4 = [
-  new Key("shift", "ShiftLeft", grey, "shiftleft", "shiftleft-up", 2),
-  new Key("z", "KeyZ", white),
-  new Key("x", "KeyX", white),
-  new Key("c", "KeyC", white),
-  new Key("v", "KeyV", white),
-  new Key("b", "KeyB", white),
-  new Key("n", "KeyN", white),
-  new Key("m", "KeyM", white),
-  new Key(",", "Comma", white),
-  new Key(".", "Period", white),
-  new Key("/", "Slash", white),
-  new Key("shift", "ShiftRight", grey, "shiftright", "shiftright-up", 2),
-  new Key("↑", "ArrowUp", charcoal),
-  new Key("pgdn", "PageDown", grey),
+  new Key("shift", "", "", "ShiftLeft", grey, "shiftleft", "shiftleft-up", 2),
+  new Key("z", "", "つ", "KeyZ", white),
+  new Key("x", "", "さ", "KeyX", white),
+  new Key("c", "", "そ", "KeyC", white),
+  new Key("v", "", "ひ", "KeyV", white),
+  new Key("b", "", "こ", "KeyB", white),
+  new Key("n", "", "み", "KeyN", white),
+  new Key("m", "", "も", "KeyM", white),
+  new Key(",", "<", "ね", "Comma", white),
+  new Key(".", ">", "る", "Period", white),
+  new Key("/", "?", "め", "Slash", white),
+  new Key(
+    "shift",
+    "",
+    "",
+    "ShiftRight",
+    grey,
+    "shiftright",
+    "shiftright-up",
+    2
+  ),
+  new Key("↑", "", "", "ArrowUp", charcoal),
+  new Key("pgdn", "", "", "PageDown", grey),
 ];
 
 const row5 = [
-  new Key("ctrl", "ControlLeft", grey),
-  new Key("win", "MetaLeft", grey),
-  new Key("alt", "AltLeft", grey),
-  new Key("", "Space", charcoal, "space", "space-up", 7),
-  new Key("alt", "AltRight", grey),
-  new Key("func", "Fn", grey),
-  new Key("ctrl", "ControlRight", grey),
-  new Key("←", "ArrowLeft", charcoal),
-  new Key("↓", "ArrowDown", charcoal),
-  new Key("→", "ArrowRight", charcoal),
+  new Key("ctrl", "", "", "ControlLeft", grey),
+  new Key("win", "", "", "MetaLeft", grey),
+  new Key("alt", "", "", "AltLeft", grey),
+  new Key("", "", " ", "Space", charcoal, "space", "space-up", 7),
+  new Key("alt", "", "", "AltRight", grey),
+  new Key("func", "", "", "Fn", grey),
+  new Key("ctrl", "", "", "ControlRight", grey),
+  new Key("←", "", "", "ArrowLeft", charcoal),
+  new Key("↓", "", "", "ArrowDown", charcoal),
+  new Key("→", "", "", "ArrowRight", charcoal),
 ];
 
 const keyboard = [row1, row2, row3, row4, row5];

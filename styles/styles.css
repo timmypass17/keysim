@@ -88,6 +88,10 @@ header a {
   box-shadow: 0px 1px rgb(0 0 0 / 25%);
   margin-top: -4px; /* move up slightly */
   display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  position: relative;
 }
 
 .spacebar {
@@ -100,4 +104,10 @@ header a {
 
 .key-tapped {
   background-color: rgb(0 0 0 / 25%);
+}
+
+.legend {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
 }
