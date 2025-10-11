@@ -33,6 +33,7 @@ class Key {
     console.log(`${this.label} pressed`);
     if (this.keyInnerDiv) {
       this.keyInnerDiv.style.backgroundColor = this.backgroundColor;
+      this.keyButton.style.transform = "translateY(2px)";
       this.sound.currentTime = 0;
       this.sound.play();
     }
@@ -43,6 +44,7 @@ class Key {
     console.log(`${this.label} released`);
     if (this.keyInnerDiv) {
       this.keyInnerDiv.style.backgroundColor = this.foregroundColor;
+      this.keyButton.style.transform = "translateY(0)";
       this.soundUp.currentTime = 0;
       this.soundUp.play();
     }

@@ -66,6 +66,7 @@ header a {
 .keyboard-row {
   width: 880px;
   display: flex;
+  position: relative; /* makes it so keys don't clip to next layer */
 }
 
 .key-btn {
@@ -102,12 +103,8 @@ header a {
   font-size: 13px;
 }
 
-.key-tapped {
-  background-color: rgb(0 0 0 / 25%);
-}
-
 .legend {
   position: absolute;
   bottom: 5px;
-  right: 5px;
+  right: 0px;
 }
