@@ -50,15 +50,13 @@ header a {
 }
 
 .icon {
-  width: 65px;
+  width: 50px;
 }
 
 /* Keyboard */
 
 #keyboard {
-  width: 910px;
   margin-top: 20px;
-  margin: 20px auto;
   padding: 15px;
   border: 1px solid #3f3f3f;
   border-radius: 6px;
@@ -116,6 +114,7 @@ header a {
   display: flex;
   flex-wrap: wrap;
   position: relative;
+  margin: 20px auto;
 }
 
 .word {
@@ -161,4 +160,68 @@ header a {
   50% {
     opacity: 0;
   }
+}
+
+html,
+body {
+  /* height: 100%; */
+  width: 100%;
+  margin: 0;
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* header, main, footer */
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  height: 100vh; /* make it fill the viewport */
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  margin-top: 25px;
+  width: 910px;
+  margin: 20px auto;
+}
+
+header {
+  grid-area: header;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  /* background-color: #f5f5f5; */
+}
+
+#keyboard {
+  /* background-color: #ccc; */
+}
+
+footer {
+  grid-area: footer;
+  text-align: center;
+  padding: 12px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  /* margin: 0px 50px; */
+}
+
+#github-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: gray;
+}
+
+#github-link img {
+  width: 24px;
+  height: 24px;
+}
+
+#switch-select {
+  width: 200px;
 }

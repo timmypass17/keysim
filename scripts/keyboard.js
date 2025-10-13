@@ -5,10 +5,10 @@ export class Keyboard {
     this.keys = [];
   }
 
-  createKeyboard(layout) {
+  updateLayout(layout) {
     // Reset keyboard
     this.keys = [];
-    const keyboardContainer = document.createElement("div");
+    const keyboardContainer = document.getElementById("keyboard");
     keyboardContainer.id = "keyboard";
 
     // Apply changes
@@ -21,7 +21,6 @@ export class Keyboard {
       // For key in row
       for (let j = 0; j < layout[i].length; j++) {
         const keyObject = layout[i][j];
-        console.log(keyObject);
         const key = Key.from(keyObject);
         const keyDiv = key.render();
         keyboardRow.appendChild(keyDiv);
@@ -30,7 +29,15 @@ export class Keyboard {
       keyboardContainer.appendChild(keyboardRow);
       this.keys.push(row);
     }
+  }
 
-    document.body.appendChild(keyboardContainer);
+  updateSwitch(switchPath) {
+    for (let i = 0; i < this.keys.length; i++) {
+      for (let j = 0; j < this.keys[i].length; j++) {
+        const soundParts = this.keys[i][j].sound.src.split("/");
+        const soundPath = soundParts[soundParts.length - 1];
+        this.keys[i][j].sound.src = `audio/${switchPath}/${soundPath}`;
+      }
+    }
   }
 }

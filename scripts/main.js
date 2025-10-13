@@ -4,7 +4,7 @@ import { Keyboard } from "./keyboard.js";
 import { layout65 } from "./layout-65.js";
 
 let keyboard = new Keyboard();
-keyboard.createKeyboard(layout65);
+keyboard.updateLayout(layout65);
 
 const text =
   "Second year high school student Reo Mikage wants nothing more than to escape his illustrious family's shadow by becoming a soccer star and winning the World Cup. The only thing that's missing is a talented diamond in the rough who can help him achieve his dream.";
@@ -40,3 +40,9 @@ document.addEventListener("keyup", (event) => {
 window.addEventListener("resize", () => {
   prompt.updateCaret();
 });
+
+var switchSelect = document.getElementById("switch-select");
+switchSelect.onchange = (event) => {
+  var switchText = event.target.value;
+  keyboard.updateSwitch(switchText);
+};

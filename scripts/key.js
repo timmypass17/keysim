@@ -19,8 +19,8 @@ export class Key {
     this.foregroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`;
     this.backgroundColor = `rgb(${color.r * 0.9}, ${color.g * 0.9}, ${color.b * 0.9})`;
     this.borderColor = `rgb(${color.r * 0.8}, ${color.g * 0.8}, ${color.b * 0.8})`;
-    this.sound = new Audio(`audio/${sound}.mp3`);
-    this.soundUp = new Audio(`audio/${soundUp}.mp3`);
+    this.sound = new Audio(`audio/gateron-yellow/${sound}.mp3`);
+    this.soundUp = new Audio(`audio/gateron-yellow/${soundUp}.mp3`);
   }
 
   // Can only have 1 constructor in JS

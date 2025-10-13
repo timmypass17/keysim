@@ -110,7 +110,6 @@ export class Prompt {
     this.letterIndex += amount;
     // If letter index is beyond word, move to next word (if it exists) and rest letter index
     if (this.letterIndex > this.words[this.wordIndex].length - 1) {
-      console.log("next");
       this.wordIndex += 1;
       this.letterIndex = 0;
 
