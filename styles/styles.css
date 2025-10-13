@@ -53,7 +53,9 @@ header a {
   width: 65px;
 }
 
-.keyboard {
+/* Keyboard */
+
+#keyboard {
   width: 910px;
   margin-top: 20px;
   margin: 20px auto;
@@ -107,4 +109,56 @@ header a {
   position: absolute;
   bottom: 5px;
   right: 0px;
+}
+
+/* Prompt */
+#prompt {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.word {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.letter {
+  white-space: pre;
+  font-size: 1.4em;
+}
+
+.correct {
+  color: #99cc00;
+}
+
+.incorrect {
+  background-color: #f0a3a3;
+}
+
+.activeLetter {
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}
+
+#caret {
+  animation: caretBlink 1s infinite;
+  position: absolute;
+  width: 2px;
+  height: 1.4em;
+  background: #000;
+  border-radius: 4px;
+  left: 0px;
+  top: 4px;
+  transition: transform 0.15s ease;
+}
+
+@keyframes caretBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
