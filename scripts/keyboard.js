@@ -36,17 +36,26 @@ export class Keyboard {
     for (let i = 0; i < this.keys.length; i++) {
       for (let j = 0; j < this.keys[i].length; j++) {
         const soundParts = this.keys[i][j].sound.src.split("/");
-        const soundPath = soundParts[soundParts.length - 1];
+        this.keys[i][j].sound.src = "";
+        this.keys[i][j].soundUp.src = "";
+        const soundPath = soundParts[soundParts.length - 1]; // "regular.mp3"
+        const soundPathParts = soundPath.split("."); // ["regular", "mp3"]
+        soundPathParts[0] += "-up"; // ["regular-up", "mp3"]
+        const soundUpPath = soundPathParts.join("."); //
+
+        console.log(soundParts);
         this.keys[i][j].sound.src = `audio/${switchPath}/${soundPath}`;
+        this.keys[i][j].soundUp.src = `audio/${switchPath}/${soundUpPath}`;
+        console.log(this.keys[i][j]);
       }
     }
   }
 
-  updateVolume(val) {
+  updateVolume(amount) {
     for (let i = 0; i < this.keys.length; i++) {
       for (let j = 0; j < this.keys[i].length; j++) {
-        this.keys[i][j].sound.volume = val;
-        this.keys[i][j].soundUp.volume = val;
+        this.keys[i][j].sound.volume = amount;
+        this.keys[i][j].soundUp.volume = amount;
       }
     }
   }

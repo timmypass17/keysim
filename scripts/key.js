@@ -55,7 +55,10 @@ export class Key {
       this.keyInnerDiv.style.backgroundColor = this.foregroundColor;
       this.keyButton.style.transform = "translateY(0)";
       this.soundUp.currentTime = 0;
-      this.soundUp.play();
+      console.log(this.soundUp);
+      if (this.soundUp != null) {
+        this.soundUp.play();
+      }
     }
   }
 

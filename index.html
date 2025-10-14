@@ -37,10 +37,32 @@
       />
       <div id="controls">
         <select name="switches" id="switch-select">
-          <option value="gateron-yellow">Gateron Yellow</option>
-          <option value="blue">Blue</option>
+          <optgroup label="Linear Switches">
+            <option value="cherry-mx-red-pbt">Cherry MX Red (PBT)</option>
+            <option value="cherry-mx-red-abs">Cherry MX Red (ABS)</option>
+            <option value="cherry-mx-black-pbt">Cherry MX Black (PBT)</option>
+            <option value="cherry-mx-black-abs">Cherry MX Black (ABS)</option>
+            <option value="gateron-yellow">Gateron Yellow</option>
+          </optgroup>
+
+          <optgroup label="Tactile Switches">
+            <option value="cherry-mx-brown-pbt">Cherry MX Brown (PBT)</option>
+            <option value="cherry-mx-brown-abs">Cherry MX Brown (ABS)</option>
+          </optgroup>
+
+          <optgroup label="Clicky Switches">
+            <option value="cherry-mx-blue-pbt">Cherry MX Blue (PBT)</option>
+            <option value="cherry-mx-blue-abs">Cherry MX Blue (ABS)</option>
+          </optgroup>
         </select>
-        <input type="range" id="volume-control" min="0" max="100" step="10" />
+        <input
+          type="range"
+          id="volume-control"
+          min="0"
+          max="100"
+          step="10"
+          value="100"
+        />
       </div>
       <div id="keyboard"></div>
     </main>
