@@ -81,6 +81,7 @@ header a {
 }
 
 .key-inner {
+  font-size: 13px;
   width: 90%;
   height: 45px;
   /* border: 1px solid #bdbdbd; */
@@ -97,10 +98,6 @@ header a {
 
 .spacebar {
   width: 97%;
-}
-
-.key-inner span {
-  font-size: 13px;
 }
 
 .legend {
@@ -218,10 +215,40 @@ footer {
 }
 
 #github-link img {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
 }
 
 #switch-select {
   width: 200px;
+}
+
+#soundbutton {
+  font-size: 2em;
+}
+
+#controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type="range"] {
+  accent-color: black;
+}
+
+#switch-select {
+  border: 1px solid black;
+}
+
+#wordInput {
+  border: 1px solid black;
+  padding: 4px 4px;
+  margin: 18px 0px;
+  font-size: 1.4em;
+  color: gray;
+  border-radius: 8px;
+}
+
+#wordInput:focus::placeholder {
+  color: transparent;
 }

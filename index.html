@@ -29,18 +29,23 @@
 
     <main id="main">
       <div id="prompt"></div>
-      <select name="switches" id="switch-select">
-        <option value="gateron-yellow">Gateron Yellow</option>
-        <option value="blue">Blue</option>
-      </select>
+      <input
+        type="text"
+        id="wordInput"
+        name="wordInput"
+        placeholder="Start typing here"
+      />
+      <div id="controls">
+        <select name="switches" id="switch-select">
+          <option value="gateron-yellow">Gateron Yellow</option>
+          <option value="blue">Blue</option>
+        </select>
+        <input type="range" id="volume-control" min="0" max="100" step="10" />
+      </div>
       <div id="keyboard"></div>
     </main>
 
-    <!-- <footer>
-      <a id="github-link" href="https://github.com/timmypass17/keysim">
-        <img src="images/github-mark.svg" />
-      </a>
-    </footer> -->
+    <footer></footer>
 
     <script type="module" src="scripts/main.js"></script>
   </body>

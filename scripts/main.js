@@ -3,8 +3,11 @@ import { Prompt } from "./prompt.js";
 import { Keyboard } from "./keyboard.js";
 import { layout65 } from "./layout-65.js";
 
+var wordInput = document.getElementById("wordInput");
+
 let keyboard = new Keyboard();
 keyboard.updateLayout(layout65);
+keyboard.updateVolume(0.5);
 
 const text =
   "Second year high school student Reo Mikage wants nothing more than to escape his illustrious family's shadow by becoming a soccer star and winning the World Cup. The only thing that's missing is a talented diamond in the rough who can help him achieve his dream.";
@@ -24,11 +27,27 @@ document.addEventListener("keydown", (event) => {
 
   // Find associated key
   const key = keyboard.keys.flat().find((k) => k.code === event.code);
-  if (key) {
-    key.press();
+  key.press();
+
+  if (key && document.activeElement === wordInput && isVisibleTextKey(event)) {
     prompt.handleKeyPress(event.key);
   }
 });
+
+function isVisibleTextKey(event) {
+  const key = event.key;
+
+  // Allow single visible characters (letters, numbers, punctuation, symbols)
+  if (key.length === 1 && key.match(/\S/)) return true; // non-whitespace visible char
+
+  // Allow space
+  if (key === " ") return true;
+
+  // Allow backspace and delete for editing
+  if (key === "Backspace" || key === "Delete") return true;
+
+  return false;
+}
 
 document.addEventListener("keyup", (event) => {
   const key = keyboard.keys.flat().find((k) => k.code === event.code);
@@ -46,3 +65,16 @@ switchSelect.onchange = (event) => {
   var switchText = event.target.value;
   keyboard.updateSwitch(switchText);
 };
+
+// document.getElementById("soundbutton").addEventListener("click", function () {
+//   const shouldMute = this.textContent === "🔈" ? true : false;
+//   this.textContent = shouldMute ? "🔇" : "🔈"; // change this to image.src if you have one
+//   keyboard.mute(shouldMute);
+// });
+
+const volumeControl = document.getElementById("volume-control");
+
+volumeControl.addEventListener("change", (event) => {
+  console.log(event.target.value / 100);
+  keyboard.updateVolume(event.target.value / 100);
+});

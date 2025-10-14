@@ -22,6 +22,7 @@ export class Keyboard {
       for (let j = 0; j < layout[i].length; j++) {
         const keyObject = layout[i][j];
         const key = Key.from(keyObject);
+        key.legend = "";
         const keyDiv = key.render();
         keyboardRow.appendChild(keyDiv);
         row.push(key);
@@ -39,5 +40,18 @@ export class Keyboard {
         this.keys[i][j].sound.src = `audio/${switchPath}/${soundPath}`;
       }
     }
+  }
+
+  updateVolume(val) {
+    for (let i = 0; i < this.keys.length; i++) {
+      for (let j = 0; j < this.keys[i].length; j++) {
+        this.keys[i][j].sound.volume = val;
+        this.keys[i][j].soundUp.volume = val;
+      }
+    }
+  }
+
+  mute(shouldMute) {
+    this.updateVolume(shouldMute ? 0 : 1);
   }
 }

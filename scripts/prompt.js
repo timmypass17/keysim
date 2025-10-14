@@ -73,6 +73,8 @@ export class Prompt {
     ) {
       this.incorrectIndex.wordIndex = null;
       this.incorrectIndex.letterIndex = null;
+      var wordInput = document.getElementById("wordInput");
+      wordInput.classList.remove("incorrect");
     }
 
     const letterDiv = this.getCurrentLetterDiv();
@@ -90,6 +92,9 @@ export class Prompt {
         wordIndex: this.wordIndex,
         letterIndex: this.letterIndex,
       };
+
+      const wordInput = document.getElementById("wordInput");
+      wordInput.classList.add("incorrect");
     }
     // Still move cursor forward
     const letterDiv = this.getCurrentLetterDiv();
@@ -99,6 +104,12 @@ export class Prompt {
   }
 
   handleMatchedLetter() {
+    if (this.getCurrentLetter() === " ") {
+      console.log("space");
+      // Clear text input
+      var wordInput = document.getElementById("wordInput");
+      wordInput.value = "";
+    }
     // Update current letter div
     const letterDiv = this.getCurrentLetterDiv();
     letterDiv.classList.add("correct");
